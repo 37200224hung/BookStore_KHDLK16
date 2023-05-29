@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load humanize %} <!-- Thêm vào đây -->
+
+{% block content %}
+
+<br>
+<div class="card mb-3" style="max-width: 840px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ object.image_url }}" class="card-img">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{ object.title }}</h4>
+                <p class="card-text">Author: {{ object.author }}</p>
+                <hr>
+                <p class="card-text">{{ object.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>Price: {{ object.price|floatformat:3|intcomma }} VNĐ</p>
+
+{% if object.book_available %}
+<div class="btn-group" role="group" aria-label="Buy and Add to Cart">
+    <a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button">Mua ngay</a>
+    <span>&nbsp;</span> <!-- Khoảng trắng hoặc &nbsp; -->
+    <form method="post" action="{% url 'checkout' object.pk %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-primary">Thêm vào giỏ hàng</button>
+    </form>
+</div>
+{% else %}
+<h4 class="text-danger">Hết Hàng!</h4>
+{% endif %}
+
+{% endblock content %}

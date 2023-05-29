@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+</head>
+
+<h1>Giỏ hàng của bạn</h1>
+
+{% if cart_items_with_subtotal %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart_item, subtotal in cart_items_with_subtotal %}
+                <tr>
+                    <td>{{ cart_item.book.title }}</td>
+                    <td>{{ cart_item.book.author }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'update_cart' cart_item.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+                    <td>{{ cart_item.book.price }}</td>
+                    <td>{{ subtotal|floatformat:3 }} VNĐ</td>
+                    <td>
+                        <a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="cart-summary">
+        <p>Total Quantity: {{ total_quantity }}</p>
+        <p>Total Price: {{ total_price|floatformat:3 }} VNĐ</p>
+        <a href="{% url 'clear_cart' %}" class="btn btn-danger">Clear Cart</a>
+        {% if cart %}
+            <a href="{% url 'checkout' cart_items_with_subtotal.0.0.book.pk %}" class="btn btn-primary">Proceed to Checkout</a>
+        {% endif %}
+    </div>
+{% else %}
+    <p>Giỏ hàng của bạn trống.</p>
+{% endif %}
+
+{% endblock %}

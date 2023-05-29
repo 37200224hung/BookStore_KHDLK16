@@ -1,0 +1,85 @@
+
+  /* styles for login container */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* styles for login header */
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+.login-header img {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+
+.login-header h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  /* styles for form fields */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+input {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px 10px 40px;
+    width: 100%;
+  }
+
+input:focus {
+    outline: none;
+  }
+
+.fa {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    font-size: 18px;
+    color: #ccc;
+  }
+
+  /* styles for button */
+.btn {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+  }
+
+.btn:hover {
+    background-color: #218838;
+  }
+
+  /* styles for sign up link */
+.signup-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+body {
+  background-image: url('https://images.pexels.com/photos/15350191/pexels-photo-15350191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

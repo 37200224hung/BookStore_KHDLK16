@@ -1,0 +1,48 @@
+/* cart.css */
+
+/* Styles for table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* Styles for cart summary */
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.cart-summary p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.cart-summary .btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Styles for empty cart message */
+.empty-cart-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #888;
+}

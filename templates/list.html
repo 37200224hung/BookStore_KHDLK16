@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<hr>
+ <div class="row">
+    <!-- <--thực hiện vòng lặp qua một đối tượng --> -->
+    {% for each in page_obj %} 
+    <div class="col" style = " margin: 10px;">
+        <div class="card" style="width: 13rem;">
+            <img src="{{ each.image_url }}" class="card-img-top" style ="width:100%; height: 230.500px;" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ each.title|slice:":10"}} ...</h5>
+                <p class="card-text">{{ each.price|floatformat:3 }} VNĐ</p>                
+                {% if each.book_available is True %}
+                <li class="text-primary">Có sẵn</li>
+                {% else %}
+                <li class="text-danger">Hết Hàng !</li>
+                {% endif %}<br>
+                <a href="{% url 'detail' each.id %}" class="btn btn-primary" style = "display: block;">Xem</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+ </div>
+
+ {% if is_paginated %}
+    <div class="pagination">
+        <span class="step-links" style="font-size: 15px; text-align: center; display: inline-block; width: 100%;">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo;</a>
+                <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; </a>
+            {% endif %}
+
+            {% for num in paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <span class="current-page">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>
+                <a href="?page={{ paginator.num_pages }}">&raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+<!-- css nút chuyển trang -->
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding-bottom: 50px;
+    }
+        
+    .pagination a,
+    .pagination .current-page {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 0 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+    }
+        
+    .pagination .current-page {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+    }
+</style>
+
+{% endif %}
+{% endblock content %}
+
+
+
